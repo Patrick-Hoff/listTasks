@@ -4,89 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            width: 93%;
-            max-width: 400px;
-            background: #dedede;
-            border-radius: 8px;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .container div {
-            height: 80%;
-        }
-
-        form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 7px;
-        }
-
-        #input {
-            margin: 9px;
-            border: 0px;
-            border-bottom: 2px solid black;
-            background: #eee;
-            border-radius: 3px;
-            height: 30px;
-            width: 200px;
-            font-size: 1.3rem;
-        }
-
-        #submit {
-            width: 169px;
-            height: 24px;
-            background: #dedede;
-            border: none;
-            border-bottom: 1px solid white;
-            box-shadow: 3px 3px black;
-            transition: .3s;
-            cursor: pointer;
-        }
-
-        #submit:active {
-            box-shadow: 1px 1px #dde3;
-        }
-
-        #tasks {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 74%;
-            border-top: 1px solid white;
-        }
-
-        ul li {
-            list-style: none;
-            padding: 3px 50px;
-            border-radius: 5px;
-            background: white;
-            margin: 7px;
-            cursor: pointer;
-        }
-
-    </style>
+    <link rel="stylesheet" href="sytles.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Document</title>
 </head>
 
@@ -95,8 +15,8 @@
     <section class="container">
 
         <form id="form">
-            <input type="text" id="input">
-            <input type="submit" id="submit">
+            <input type="text" id="input" placeholder="Adicione uma tarefa">
+            <input type="submit" id="submit" value="Adicionar">
         </form>
 
         <div id="tasks">
@@ -104,50 +24,6 @@
             </ul>
         </div>
     </section>
-
-
-
-    <script>
-
-const form = document.getElementById("form");
-const input = document.getElementById("input");
-const containerList = document.getElementById("containerList");
-
-// Carrega a lista do localStorage ao iniciar
-let list = JSON.parse(localStorage.getItem("tasks")) || [];
-
-// Função para atualizar a lista no HTML
-function updateListDisplay() {
-    containerList.innerHTML = ''; // Limpa a lista atual
-    list.forEach(item => {
-        containerList.innerHTML += `<li>${item}</li>`;
-    });
-}
-
-// Adiciona uma nova tarefa
-function addTasks() {
-    const text = input.value.trim(); // Remove espaços em branco
-    if (text) {
-        list.push(text);
-        localStorage.setItem("tasks", JSON.stringify(list)); // Salva a lista no localStorage
-        updateListDisplay(); // Atualiza a exibição da lista
-        input.value = ''; // Limpa o input
-    }
-}
-
-// Inicializa a lista ao carregar a página
-updateListDisplay();
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    addTasks();
-});
-
-
-
-
-    </script>
-
 
 </body>
 
